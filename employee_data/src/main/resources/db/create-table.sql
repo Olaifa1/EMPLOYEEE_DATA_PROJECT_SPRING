@@ -1,4 +1,6 @@
 use employee_db;
+
+drop table if exists `employee`;
 create table `employee`(
 	employee_id INT(11) not null auto_increment,
 	`firstname` varchar(45) not null,
