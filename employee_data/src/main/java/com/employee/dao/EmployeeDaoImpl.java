@@ -27,7 +27,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public void saveEmployee(Employee newEmployee) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
-			currentSession.save(newEmployee);
+			currentSession.saveOrUpdate(newEmployee);
 	}
 
 	@Override

@@ -25,6 +25,10 @@
 <!-- loop over and print our employees -->
 <c:forEach var="tempEmployee" items="${employeeList}">
 
+<!-- Construct an "update" link with customer id -->
+<c:url var="updatelink" value="/updateform">
+<c:param name="employeeId" value="${tempEmployee.employeeId}"/>
+</c:url>
 
 
 <tr>
@@ -32,7 +36,7 @@
 <td>${tempEmployee.lastName}</td>
 <td>${tempEmployee.email}</td>
 <td>${tempEmployee.phoneNumber}</td>
-<td><a href ="">Update</a></td>
+<td><a href ="${updatelink}">Update</a></td>
 </tr>
 
 </c:forEach>

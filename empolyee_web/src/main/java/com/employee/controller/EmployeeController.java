@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.employee.entity.Employee;
 import com.employee.service.EmployeeService;
@@ -30,6 +32,8 @@ public class EmployeeController {
 		
 		
 		employeeService.saveEmployee(theEmployee);
+		
+//		Redirect to homepage
 		return "redirect:/";
 	}
 	
@@ -54,4 +58,18 @@ public class EmployeeController {
 		return "home";
 		
 	}
+	
+	@GetMapping("/updateform")
+	public ModelAndView updateEmployee(@RequestParam("employeeId") int employeeId) {
+		
+		logger.info("New update request-->"  + employeeId);
+		
+		Employee existingEmployee = employeeService.getById(employeeId);
+		
+		logger.info("Initial employee details->>" + existingEmployee);
+		
+		return  new ModelAndView("update-form", "employee", existingEmployee);
+	}
+
+	
 }
